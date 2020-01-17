@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/**
+ * @function Application
+ * @version 0.0.1
+ * @description Rapid Adventures Application
+ */
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+/* --- Global --- */
+import { Router } from "@reach/router";
+/* --- Local --- */
+import { Site, Dashboard } from "@routes";
+import Providers from "./providers";
 
-export default App;
+/* --- Component --- */
+export default () => (
+  <Providers>
+    <Router width="100%">
+      <Site path="/*" />
+      <Dashboard path="/dashboard/*" />
+    </Router>
+  </Providers>
+);
