@@ -1,6 +1,6 @@
 /* --- Global --- */
 import React from "react";
-import { withEthers } from "ethers-react-system";
+import { withEthers } from "@ethers-react/system";
 import { Span } from "rapid-atoms";
 
 /* ---  Component --- */

@@ -13,7 +13,7 @@ import {
   TransferLocal,
   TokenDeploy,
   ApproveLocal
-} from "ethers-react-ui";
+} from "@ethers-react/ui";
 
 /* --- Component : EthersHookTransactionExample --- */
 export const EthersHookTransactionExample = props => {

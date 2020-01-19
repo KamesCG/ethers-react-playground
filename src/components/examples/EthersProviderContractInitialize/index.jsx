@@ -15,7 +15,7 @@ const EthersCoreSetup = props => {
       </Atom.Box>
       <Molecule.CodeHighlight>
         {`
-import { EthersProvider } from "ethers-react-system";
+import { EthersProvider } from "@ethers-react/system";
 import ERC20 from "@contracts/ERC20";
 
 // Contract Initialization Array

@@ -1,7 +1,7 @@
 /* --- Global --- */
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { withEthers, hooks } from "ethers-react-system";
+import { withEthers, hooks } from "@ethers-react/system";
 /* --- Component --- */
 export const TransactionLocal = props => {
   const ethersProvider = withEthers();
@@ -19,7 +19,7 @@ export const TransactionLocal = props => {
   };
 
   useEffect(() => {
-    console.log(transactionRequest);
+    // console.log(transactionRequest);
   }, [transactionRequest]);
 
   return (

@@ -1,7 +1,7 @@
 /* --- Global --- */
 import React from "react";
 import PropTypes from "prop-types";
-import { withEthers } from "ethers-react-system";
+import { withEthers } from "@ethers-react/system";
 import { Span } from "rapid-atoms";
 import { Component } from "rapid-ui-compose";
 

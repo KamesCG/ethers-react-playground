@@ -1,6 +1,6 @@
 import idx from "idx";
 import { useForm } from "react-hook-form";
-import { withEthers } from "ethers-react-system";
+import { withEthers } from "@ethers-react/system";
 /* --- Component --- */
 const FormRegistration = props => {
   const ethersProvider = withEthers();

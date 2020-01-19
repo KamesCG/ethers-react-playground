@@ -1,6 +1,12 @@
 /* --- Global --- */
 import { ThemeProvider } from "theme-ui";
-import { EthersProvider } from "ethers-react-system";
+import { EthersProvider } from "@ethers-react/system";
+import { hooks as hooksReactive } from "@ethers-react/reactive";
+import {
+  actions as actionsGlobal,
+  hooks as hooksGlobal,
+  types as typesGlobal
+} from "@ethers-react/global";
 
 /* --- Local --- */
 import theme from "./assets/theme";
@@ -27,9 +33,24 @@ const contracts = [
   }
 ];
 
+const extensions = [
+  {
+    name: "ethers-react-reactive",
+    hooks: hooksReactive
+  },
+  {
+    name: "ethers-react-global",
+    actions: actionsGlobal,
+    hooks: hooksGlobal,
+    types: typesGlobal
+  }
+];
+
 /* --- Component --- */
 export default props => (
   <ThemeProvider theme={theme}>
-    <EthersProvider contracts={contracts}>{props.children}</EthersProvider>
+    <EthersProvider contracts={contracts} extensions={extensions}>
+      {props.children}
+    </EthersProvider>
   </ThemeProvider>
 );

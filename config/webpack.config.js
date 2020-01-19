@@ -295,15 +295,27 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
-        "ethers-react-system": path.resolve(
+        "@ethers-react/system": path.resolve(
           __dirname,
-          "../src/modules/ethers-react"
+          "../src/modules/ethers-react-system"
         ),
-        "ethers-react-ui": path.resolve(
+        "@ethers-react/global": path.resolve(
+          __dirname,
+          "../src/modules/ethers-react-global"
+        ),
+        "@ethers-react/reactive": path.resolve(
+          __dirname,
+          "../src/modules/ethers-react-reactive"
+        ),
+        "@ethers-react/ui": path.resolve(
           __dirname,
           "../src/modules/ethers-react-ui"
         ),
         "rapid-atoms": path.resolve(__dirname, "../src/modules/rapid-atoms"),
+        "rapid-molecules": path.resolve(
+          __dirname,
+          "../src/modules/rapid-molecules"
+        ),
         "rapid-ui-compose": path.resolve(
           __dirname,
           "../src/modules/rapid-ui-compose"

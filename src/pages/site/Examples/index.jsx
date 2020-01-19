@@ -5,6 +5,7 @@ import { Router } from "@reach/router";
 
 /* --- Module --- */
 import { EthersHookTransactionExample } from "./common";
+import { ERC20Demo, TransactionDemo } from "./erc20";
 
 /* --- Component : Main --- */
 const HomePage = props => {
@@ -65,7 +66,22 @@ const Main = props => {
         />
         <Molecule.Menu
           direction="column"
-          label="Requests"
+          label="Extensions"
+          sx={{
+            m: 1,
+            mx: 1,
+            fontSize: 1
+          }}
+          items={[
+            {
+              label: "ERC20",
+              to: "/examples/extension/erc20"
+            }
+          ]}
+        />
+        <Molecule.Menu
+          direction="column"
+          label="Globalize"
           sx={{
             m: 1,
             mx: 1,
@@ -120,6 +136,7 @@ const Main = props => {
           <ExampleCommon path="/common" />
           <ExampleContracts path="/contracts" />
           <ExampleWallet path="/wallet" />
+          <ExampleERC20 path="/extension/erc20" />
         </Router>
       </Atom.Box>
     </Atom.Flex>
@@ -149,8 +166,20 @@ const ExampleContracts = props => {
       <Atom.Heading as="h3" xxl>
         Contracts
       </Atom.Heading>
-      <TokenDeployExample />
-      <Featured />
+      {/* <TokenDeployExample /> */}
+      {/* <Featured /> */}
+    </Atom.Box>
+  );
+};
+
+const ExampleERC20 = props => {
+  return (
+    <Atom.Box>
+      <Atom.Heading as="h3" xxl>
+        ERC20
+      </Atom.Heading>
+      <TransactionDemo />
+      <ERC20Demo />
     </Atom.Box>
   );
 };

@@ -19,7 +19,7 @@ import {
   TransferLocal,
   TokenDeploy,
   ApproveLocal
-} from "ethers-react-ui";
+} from "@ethers-react/ui";
 
 /* --- Components --- */
 const CorePage = props => {

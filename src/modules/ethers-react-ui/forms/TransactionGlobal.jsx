@@ -1,7 +1,7 @@
 /* --- Global --- */
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { withEthers, EthersContext } from "ethers-react-system";
+import { withEthers, EthersContext } from "@ethers-react/system";
 
 /* --- Component --- */
 export const TransactionGlobal = props => {

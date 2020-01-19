@@ -1,1 +1,0 @@
-export { useContractConnect } from "./useContractConnect";

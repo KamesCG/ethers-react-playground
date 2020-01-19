@@ -11,9 +11,9 @@ import {
   TransferLocal,
   TokenDeploy,
   ApproveLocal
-} from "ethers-react-ui";
+} from "@ethers-react/ui";
 
-const TransactionDemo = props => {
+export const TransactionDemo = props => {
   return (
     <>
       <Atom.Flex center column>
@@ -45,7 +45,7 @@ const TransactionDemo = props => {
   );
 };
 
-const TokenDeployExample = props => {
+export const TokenDeployExample = props => {
   return (
     <Atom.Container>
       <Atom.Flex center column>
@@ -61,7 +61,7 @@ const TokenDeployExample = props => {
   );
 };
 
-const ERC20Demo = props => {
+export const ERC20Demo = props => {
   return (
     <>
       <Atom.Flex center column>

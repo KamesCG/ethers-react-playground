@@ -4,7 +4,7 @@ const EthersCoreSetup = props => {
     <Molecule.CodeHighlight>{`
     /* --- Global --- */
 import { ThemeProvider } from "theme-ui";
-import { EthersProvider } from "ethers-react-system";
+import { EthersProvider } from "@ethers-react/system";
 
 /* --- Local --- */
 import theme from "./assets/theme";

@@ -11,7 +11,7 @@ import {
   TransferLocal,
   TokenDeploy,
   ApproveLocal
-} from "ethers-react-ui";
+} from "@ethers-react/ui";
 
 const Featured = props => {
   return (

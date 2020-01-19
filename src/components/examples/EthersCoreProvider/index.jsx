@@ -16,7 +16,7 @@ const EthersCoreSetup = props => {
       </Atom.Box>
       <Molecule.CodeHighlight>
         {`
-import { EthersProvider } from "ethers-react-system";
+import { EthersProvider } from "@ethers-react/system";
 
 const Application = ({ children }) => (
     <EthersProvider>

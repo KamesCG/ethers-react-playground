@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { withEthers } from "ethers-react-system";
+import { withEthers } from "@ethers-react/system";
 
 /* --- Component --- */
 export const TransferLocal = ({ contractAddress, ...props }) => {
