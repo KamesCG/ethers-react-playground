@@ -9,23 +9,18 @@ export const TransactionLocal = props => {
 
   const transactionRequest = hooks.useWalletSendTransaction({});
 
-  useEffect(() => {
-    // console.log(transactionRequest);
-  }, [transactionRequest]);
-
   const onSubmit = async values => {
     let tx = {
       to: values.address,
       value: ethersProvider.instance.utils.parseEther(values.amount),
       data: values.data
     };
-    // const tx = await ethersProvider.wallet.sendTransaction(transaction);
-    // console.log(tx, 'tx');
-
-    // console.log(transactionRequest);
-
     transactionRequest.dispatchTransaction(ethersProvider.wallet, tx);
   };
+
+  useEffect(() => {
+    console.log(transactionRequest);
+  }, [transactionRequest]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>

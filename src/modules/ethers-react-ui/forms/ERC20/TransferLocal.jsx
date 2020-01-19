@@ -1,38 +1,33 @@
-import idx from "idx";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { withEthers } from "ethers-react-system";
+
 /* --- Component --- */
-export const TransferLocal = ({ contractAddress, contractAbi, ...props }) => {
+export const TransferLocal = ({ contractAddress, ...props }) => {
   const { handleSubmit, register, errors } = useForm();
-  /* --- State --- */
-  const [contract, setContract] = useState(undefined);
-  const [transactionStatus, setTransactionStatus] = useState();
+  const [transferStatus, setTransferStatus] = useState();
+  const [transferStatusError, setTransferStatusError] = useState();
 
   /* --- Ethers Provider --- */
   const ethersProvider = withEthers();
 
-  useEffect(() => {
-    if (contractAddress && contractAbi) {
-      let contract = new ethersProvider.instance.Contract(
-        contractAddress,
-        contractAbi,
-        ethersProvider.wallet
-      );
-
-      console.log(contract, "contract");
-      setContract(contract);
-    }
-  }, [contractAddress]);
-
   const onSubmit = async values => {
     try {
-      const tx = contract.transfer([...values]);
-      setTransactionStatus(tx);
+      const transferDispatch = ethersProvider.contracts[
+        "DevToken"
+      ].api.transfer(values.address, values.amount, {
+        gasLimit: 100000
+      });
     } catch (error) {
-      setTransactionStatus(error);
+      setTransferStatusError(error);
+      console.log(error);
     }
   };
+
+  /* --- Error : Effect --- */
+  useEffect(() => {
+    console.log(transferStatusError);
+  }, [transferStatusError]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
@@ -48,7 +43,7 @@ export const TransferLocal = ({ contractAddress, contractAbi, ...props }) => {
       <Molecule.Field
         name="amount"
         placeholder="Amount"
-        defaultValue="0.1"
+        defaultValue="1"
         register={register}
         errors={errors}
         sx={styles.field}

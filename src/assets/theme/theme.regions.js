@@ -1,35 +1,39 @@
 export default {
   headerAbsolute: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
-    color: '#FFF',
+    color: "#FFF",
     px: 4,
     py: 2,
-    zIndex: 100,
+    zIndex: 100
   },
   header: {
-    bg:'paper',
-    color: 'text',
-    borderBottom: '2px solid #ececec',
+    bg: "paper",
+    color: "text",
+    borderBottom: "2px solid #ececec",
     px: 4,
     py: 2,
-    zIndex: 100,
+    zIndex: 100
+  },
+  main: {
+    bg: "paper",
+    color: "text"
   },
   footer: {
-    bg:'paper',
-    color: 'text',
+    bg: "neutral",
+    color: "text",
     boxShadow: 0,
     px: 4,
     py: 3,
-    zIndex: 100,
+    zIndex: 100
   },
   fill: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     bottom: 0,
     left: 0,
-    right: 0,
+    right: 0
   }
-}
+};

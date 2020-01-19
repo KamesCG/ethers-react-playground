@@ -4,14 +4,20 @@ import { Router } from "@reach/router";
 
 /* --- Local --- */
 import { Site } from "@templates";
-import { Home, Examples } from "@pages";
+import { Home, Core, UserInterface, Extensions, Examples } from "@pages";
 
 /* --- Component --- */
 const IndexPage = () => (
   <Site>
-    <Router primary={false} style={{ width: "100%" }}>
+    <Router
+      primary={false}
+      style={{ display: "flex", flex: 1, height: "100%", width: "100%" }}
+    >
       <Home path="/" />
-      <Examples path="/examples" />
+      <Core path="/core" />
+      <Examples path="/examples/*" />
+      <UserInterface path="/user-interface" />
+      <Extensions path="/extensions/*" />
     </Router>
   </Site>
 );

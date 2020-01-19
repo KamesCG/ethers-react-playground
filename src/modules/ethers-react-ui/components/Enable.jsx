@@ -2,8 +2,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withEthers } from "ethers-react-system";
-import { Span } from "horizin-atoms";
-import { Component } from "horizin-ui-compose";
+import { Span } from "rapid-atoms";
+import { Component } from "rapid-ui-compose";
 
 /* ---  Component --- */
 const EnableEthereum = props => {

@@ -7,7 +7,7 @@ import {
   BackgroundImage,
   Flex,
   Heading
-} from "horizin-atoms";
+} from "rapid-atoms";
 
 const Showcase = ({ as, sx, children, ...props }) => (
   <>

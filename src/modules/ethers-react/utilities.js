@@ -1,75 +1,15 @@
-import idx from 'idx';
-import { utils, ethers } from 'ethers';
+import idx from "idx";
+import { utils, ethers } from "ethers";
 
-/**
- *
- * @param {Object} Contract The build results of migrations and compiliation. Includes abi, networks, bytecode, etc
- * @returns {String} returns the ethereum address that is associated with the latest deployment of the smart contract
- */
-export const getLatestDeploymentAddress = Contract => {
-  const networks = Object.keys(Contract.networks);
-  const latestAddress = idx(
-    Contract,
-    _ => _.networks[networks[networks.length - 1]].address
-  );
-  return latestAddress;
-};
-
-export const getContract = contract => {
-  const provider = networkRouting('metamask') || networkRouting('json');
-  const address = getLatestDeploymentAddress(contract);
-  if (address) {
-  }
-  const deployedContract = new ethers.Contract(address, contract.abi, provider);
-  return [deployedContract, address];
-};
-
-/**
- *
- * @param {Object} oldContracts
- * @param {ethers.Wallet} wallet
- */
-export const generateNewContracts = (oldContracts, wallet) => {
-  let newContracts = {};
-  const keys = Object.keys(oldContracts);
-  keys.forEach(id => {
-    const {
-      address,
-      interface: { abi }
-    } = oldContracts[id];
-    const contract = new ethers.Contract(address, abi, wallet);
-    newContracts[id] = {
-      id,
-      address,
-      ...contract
-    };
-  });
-
-  return newContracts;
-};
-
-/**
- * @func networkRouting
- * @desc Select network provider.
- * @param {Object} network
- * @return {Object} provider
- */
-export const networkRouting = network => {
-  switch (network) {
-    case 'json':
-      return new ethers.providers.JsonRpcProvider('http://localhost:8545');
-    case 'test':
-      return window.ethers.providers.test;
-    case 'infura':
-      return window.ethers.providers.infura;
-    case 'metamask':
-      return window.web3
-        ? new ethers.providers.Web3Provider(window.web3.currentProvider)
-        : null;
-    default:
-      return ethers.getDefaultProvider('rinkeby');
-  }
-};
+export const selectNetworkName = id =>
+  ({
+    "1": "mainnet",
+    "3": "ropsten",
+    "4": "rinkeby",
+    "5": "goerli",
+    "42": "kovan",
+    "0": "Network Undetected"
+  }[id || 0]);
 
 export const hashCode = function(input) {
   var hash = 0;
@@ -95,7 +35,7 @@ export const hashCode = function(input) {
 export function shortenAddress(address, num, showEnd = true) {
   if (!address) return null;
   return `${address.slice(0).slice(0, num)}...${
-    showEnd ? address.slice(0).slice(-num) : ''
+    showEnd ? address.slice(0).slice(-num) : ""
   }`;
 }
 export const trimBalance = balance => {
@@ -136,7 +76,7 @@ export const isAddress = address => {
  */
 var isChecksumAddress = function(address) {
   // Check each case
-  address = address.replace('0x', '');
+  address = address.replace("0x", "");
   var addressHash = utils.keccak256(address.toLowerCase());
   for (var i = 0; i < 40; i++) {
     // the nth letter should be uppercase if the nth digit of casemap is 1
@@ -158,10 +98,10 @@ var isChecksumAddress = function(address) {
  * @param {String} msg
  */
 export const createStringhash = msg =>
-  utils.solidityKeccak256(['string'], [msg]);
+  utils.solidityKeccak256(["string"], [msg]);
 
 const createStringMessageSignature = msg => {
-  let messageHash = utils.solidityKeccak256(['string'], [msg]);
+  let messageHash = utils.solidityKeccak256(["string"], [msg]);
   let messageHashBytes = utils.arrayify(messageHash);
   return messageHashBytes;
 };

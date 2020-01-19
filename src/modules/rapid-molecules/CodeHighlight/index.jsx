@@ -1,6 +1,6 @@
 import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import { Box } from "horizin-atoms";
+import { Box } from "rapid-atoms";
 // import darkTheme from "prism-react-renderer/themes/oceanicNext";
 import darkTheme from "prism-react-renderer/themes/vsDark";
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu:300,400,500&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu:300,400,500&display=swap");
 
 * {
   box-sizing: border-box;
@@ -13,8 +13,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Ubuntu', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Ubuntu", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,6 +35,10 @@ body {
   z-index: 50;
 }
 
+strong {
+  font-weight: 500;
+}
+
 p {
   box-sizing: border-box;
   z-index: 10;
@@ -47,7 +51,7 @@ p {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -62,8 +66,10 @@ a:hover {
   cursor: pointer;
 }
 
-ul {
+ul,
+ol {
   list-style-type: disc;
+  margin-left: 20px;
 }
 
 li {

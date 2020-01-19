@@ -5,13 +5,16 @@ import { EthersProvider } from "ethers-react-system";
 /* --- Local --- */
 import theme from "./assets/theme";
 import ERC20 from "@contracts/ERC20.json";
+import MeshDevCoin from "@contracts/MeshDevCoin.json";
 
+/* --- Configuration --- */
 const contracts = [
+  MeshDevCoin,
   {
-    address: "0xbD660796D0657B5D3Cc3fa81d1299cCba8904FF0", // Depending on contract deploy process the address is manually passed
+    address: "0xbD660796D0657B5D3Cc3fa81d1299cCba8904FF0",
     abi: ERC20.abi,
     bytecode: ERC20.bytecode,
-    id: "DevToken",
+    name: "DevToken",
     network: {
       chainId: 1,
       name: "mainnet"

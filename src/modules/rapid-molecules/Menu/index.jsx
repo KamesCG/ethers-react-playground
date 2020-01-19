@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Match } from "@reach/router";
 
 /* --- Local Dependencies --- */
-import { Flex, Span, HorizontalRule, Heading } from "horizin-atoms";
+import { Flex, Span, HorizontalRule, Heading } from "rapid-atoms";
 import Link from "../Link";
 
 /* --- Module --- */
@@ -62,9 +62,16 @@ const MenuItem = ({ children, label, to, icon, vertical, ...props }) => {
             sx={{
               ...props.styledItemDefaults,
               ...props.sx,
+              pb: 2,
               opacity: 0.8,
+              borderBottom: "2px solid",
+              borderBottomColor: "transparent",
+              outline: "none",
               "&.active": {
-                opacity: 1
+                outline: "none",
+                opacity: 1,
+                borderBottomColor: "blue"
+                // borderBottom: "2px solid"
               },
               "&:hover": props.hover
             }}

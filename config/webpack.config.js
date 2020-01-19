@@ -303,13 +303,10 @@ module.exports = function(webpackEnv) {
           __dirname,
           "../src/modules/ethers-react-ui"
         ),
-        "horizin-atoms": path.resolve(
+        "rapid-atoms": path.resolve(__dirname, "../src/modules/rapid-atoms"),
+        "rapid-ui-compose": path.resolve(
           __dirname,
-          "../src/modules/horizin-atoms"
-        ),
-        "horizin-ui-compose": path.resolve(
-          __dirname,
-          "../src/modules/horizin-ui-compose"
+          "../src/modules/rapid-ui-compose"
         ),
         "@src": path.resolve(__dirname, "../src"),
         "@modules": path.resolve(__dirname, "../src/modules"),
@@ -549,10 +546,10 @@ module.exports = function(webpackEnv) {
         PropTypes: "prop-types"
       }),
       new webpack.ProvidePlugin({
-        Atom: "@modules/horizin-atoms"
+        Atom: "@modules/rapid-atoms"
       }),
       new webpack.ProvidePlugin({
-        Molecule: "@modules/horizin-molecules"
+        Molecule: "@modules/rapid-molecules"
       }),
       new webpack.ProvidePlugin({
         GLOBAL: "@global"

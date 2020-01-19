@@ -1,7 +1,7 @@
 /* --- Global --- */
 import React from "react";
 import { withEthers } from "ethers-react-system";
-import { Span } from "horizin-atoms";
+import { Span } from "rapid-atoms";
 
 /* ---  Component --- */
 export const AccountBalance = ({ sx, trimmed }) => {

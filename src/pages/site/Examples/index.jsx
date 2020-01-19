@@ -1,214 +1,167 @@
-/* --- Components --- */
-import { ShowcaseExamples } from "@views";
-import {
-  Address,
-  AccountBalance,
-  AccountNonce,
-  Enable,
-  NetworkName,
-  NetworkID,
-  Providers,
-  TransactionLocal,
-  TransactionGlobal,
-  TransferLocal,
-  TokenDeploy,
-  ApproveLocal
-} from "ethers-react-ui";
+/* --- Global --- */
+import { Router } from "@reach/router";
 
-import ERC20 from "@contracts/ERC20Bank.json";
+/* --- Local --- */
 
-/* --- Components --- */
+/* --- Module --- */
+import { EthersHookTransactionExample } from "./common";
+
+/* --- Component : Main --- */
 const HomePage = props => {
   return (
-    <Atom.Box sx={{ width: "100%" }}>
-      <ShowcaseExamples />
+    <Atom.Flex column sx={{ flex: 1, width: "100%" }}>
+      <Showcase />
+      <Main />
+    </Atom.Flex>
+  );
+};
+
+const Showcase = props => {
+  return (
+    <Atom.Box
+      sx={{ bg: "neutral", boxShadow: 0, color: "text", p: 3, zIndex: 1000 }}
+    >
+      <Atom.Flex between>
+        <Atom.Heading m0 xxl>
+          Examples
+        </Atom.Heading>
+      </Atom.Flex>
+    </Atom.Box>
+  );
+};
+
+const Main = props => {
+  return (
+    <Atom.Flex sx={{ height: "100%", flex: 1 }}>
+      <Atom.Box
+        sx={{
+          bg: "neutral",
+          flex: 2,
+          p: 3
+        }}
+      >
+        <Molecule.Menu
+          direction="column"
+          label="Hooks"
+          sx={{
+            m: 1,
+            mx: 1,
+            fontSize: 1
+          }}
+          items={[
+            {
+              label: "Common",
+              to: "/examples/common"
+            },
+            {
+              label: "Contract",
+              to: "/examples/contracts"
+            },
+            {
+              label: "Wallet",
+              to: "/examples/wallet"
+            }
+          ]}
+        />
+        <Molecule.Menu
+          direction="column"
+          label="Requests"
+          sx={{
+            m: 1,
+            mx: 1,
+            fontSize: 1
+          }}
+          items={[
+            {
+              label: "Transaction",
+              to: "/examples/requests/transaction"
+            },
+            {
+              label: "Signed Messages",
+              to: "/examples/requests/contract"
+            },
+            {
+              label: "Contract Interaction",
+              to: "/examples/requests/contract"
+            }
+          ]}
+        />
+        <Molecule.Menu
+          direction="column"
+          label="State Management"
+          sx={{
+            m: 1,
+            mx: 1,
+            fontSize: 1
+          }}
+          items={[
+            {
+              label: "Component State",
+              to: "/examples/component-state"
+            },
+            {
+              label: "Application State",
+              to: "/examples/application-state"
+            },
+            {
+              label: "Subspace Caching",
+              to: "/examples/application-caching"
+            }
+          ]}
+        />
+      </Atom.Box>
+      <Atom.Box
+        sx={{
+          flex: 10,
+          p: 3
+        }}
+      >
+        <Router primary={false} style={{ width: "100%" }}>
+          <ExampleCommon path="/common" />
+          <ExampleContracts path="/contracts" />
+          <ExampleWallet path="/wallet" />
+        </Router>
+      </Atom.Box>
+    </Atom.Flex>
+  );
+};
+
+const ExampleCommon = props => {
+  return (
+    <Atom.Box>
+      <Atom.Flex alignCenter between>
+        <Atom.Heading as="h3" xxl m0>
+          Common
+        </Atom.Heading>
+        <Molecule.CodeHighlight>
+          {`import { hooks } from "@ethers-react/system";`}
+        </Molecule.CodeHighlight>
+      </Atom.Flex>
+      <Atom.HorizontalRule sx={{ mb: 4, mt: 2 }} />
+      <EthersHookTransactionExample />
+    </Atom.Box>
+  );
+};
+
+const ExampleContracts = props => {
+  return (
+    <Atom.Box>
+      <Atom.Heading as="h3" xxl>
+        Contracts
+      </Atom.Heading>
       <TokenDeployExample />
       <Featured />
     </Atom.Box>
   );
 };
 
-const Featured = props => {
+const ExampleWallet = props => {
   return (
-    <Atom.Container sx={{ my: 5 }}>
-      <Atom.Flex column>
-        <Atom.Heading xl sx={{ my: 3 }}>
-          Enable
-        </Atom.Heading>
-        <Enable />
-
-        <Atom.Heading xl sx={{ my: 3 }}>
-          Acccount
-        </Atom.Heading>
-        <Atom.Span>
-          Address: <Address />
-        </Atom.Span>
-        <Atom.Span>
-          Balance: <AccountBalance trimmed />
-        </Atom.Span>
-        <Atom.Span>
-          Nonce: <AccountNonce />
-        </Atom.Span>
-
-        <Atom.Heading xl sx={{ my: 3 }}>
-          Network
-        </Atom.Heading>
-        <Atom.Span>
-          <NetworkName /> (<NetworkID />)
-        </Atom.Span>
-
-        <TransactionDemo />
-
-        <ERC20Demo />
-      </Atom.Flex>
-    </Atom.Container>
-  );
-};
-
-const TransactionDemo = props => {
-  return (
-    <>
-      <Atom.Flex center column>
-        <Atom.Heading xl sx={{ my: 3 }}>
-          Transaction
-        </Atom.Heading>
-        <Atom.Span>Initialize a standard wallet transaction.</Atom.Span>
-      </Atom.Flex>
-      <Atom.HorizontalRule sx={{ my: 3 }} />
-      <Atom.Flex>
-        <Atom.Box sx={{ flex: 1, p: 4 }}>
-          <Atom.Heading>Local Component State</Atom.Heading>
-          <Atom.Paragraph>
-            The transaction state will only managed in the component.
-          </Atom.Paragraph>
-          <Atom.HorizontalRule sx={{ my: 3 }} />
-          <TransactionLocal />
-        </Atom.Box>
-        <Atom.Box sx={{ flex: 1, p: 4 }}>
-          <Atom.Heading>Global Application State</Atom.Heading>
-          <Atom.Paragraph>
-            The transaction state will be accessible to the entire application.
-          </Atom.Paragraph>
-          <Atom.HorizontalRule sx={{ my: 3 }} />
-          <TransactionGlobal />
-        </Atom.Box>
-      </Atom.Flex>
-    </>
-  );
-};
-
-const TokenDeployExample = props => {
-  return (
-    <Atom.Container>
-      <Atom.Flex center column>
-        <Atom.Heading xl sx={{ my: 3 }}>
-          ERC20 Deploy
-        </Atom.Heading>
-        <TokenDeploy
-          contractAbi={ERC20.abi}
-          contractBytecode={ERC20.bytecode}
-        />
-      </Atom.Flex>
-    </Atom.Container>
-  );
-};
-
-const ERC20Demo = props => {
-  return (
-    <>
-      <Atom.Flex center column>
-        <Atom.Heading xl sx={{ my: 3 }}>
-          ERC20 Examples
-        </Atom.Heading>
-        <Atom.Span>Manage ERC20 interactions.</Atom.Span>
-      </Atom.Flex>
-      <Atom.HorizontalRule sx={{ my: 3 }} />
-
-      <Atom.Flex>
-        <Atom.Box sx={{ flex: 1, p: 4 }}>
-          <Atom.Heading>Local Component State</Atom.Heading>
-          <Atom.Paragraph>
-            The transaction state will only managed in the component.
-          </Atom.Paragraph>
-          <Atom.HorizontalRule sx={{ my: 3 }} />
-
-          <Atom.Heading>Transfer</Atom.Heading>
-          <TransferLocal />
-          <Atom.Heading>Approve</Atom.Heading>
-          <ApproveLocal />
-        </Atom.Box>
-        <Atom.Box sx={{ flex: 1, p: 4 }}>
-          <Atom.Heading>Global Application State</Atom.Heading>
-          <Atom.Paragraph>
-            The transaction state will be accessible to the entire application.
-          </Atom.Paragraph>
-          <Atom.HorizontalRule sx={{ my: 3 }} />
-        </Atom.Box>
-      </Atom.Flex>
-    </>
-  );
-};
-
-const showcase = {
-  container: {
-    bg: "blue",
-    color: "white",
-    flex: 1
-  },
-  containerWhite: {
-    bg: "white",
-    color: "blue",
-    flex: 1
-  },
-  coverImage: {
-    opacity: 0.6,
-    ratio: 0.4
-  },
-  left: {
-    flex: 5,
-    p: 5,
-    py: 6
-  },
-  right: {
-    flex: 4
-  },
-  actions: { mx: 2 }
-};
-
-const FeaturedAdventure = props => {
-  return (
-    <Atom.Flex alignCenter sx={showcase.containerWhite}>
-      <Atom.BackgroundImage
-        ratio={0.3}
-        src="https://images.unsplash.com/photo-1520695287272-b7f8af46d367?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-        sx={showcase.coverImage}
-      />
-      <Atom.Absolute sx={{ top: 0, left: 0, m: 5 }}>
-        <Atom.Heading md>Featured Adventure</Atom.Heading>
-      </Atom.Absolute>
-      <Atom.Flex column sx={showcase.left}>
-        <Atom.Box card>
-          <Atom.Heading xxl heavy>
-            Bankless Level-Up Guide
-          </Atom.Heading>
-          <Atom.Heading xl normal>
-            Explore the world of DeFi
-          </Atom.Heading>
-          <Atom.Paragraph sx={{ fontSize: 0 }}>
-            Vivamus tincidunt nibh facilisis metus finibus, laoreet aliquet
-            lectus rutrum. Sed ex tortor, fermentum vel urna vitae, fermentum
-            facilisis nulla. Maecenas at turpis quis metus sollicitudin
-            placerat. Donec ipsum libero, tempus nec risus ut, iaculis gravida
-            mi. Morbi sed lacinia dui. Duis id malesuada eros. Proin a sem sit
-            amet sem tempus aliquam.
-          </Atom.Paragraph>
-          <Atom.Button sx={{}}>Start Adventure</Atom.Button>
-        </Atom.Box>
-      </Atom.Flex>
-      <Atom.Flex center column sx={showcase.right}>
-        <Atom.Box></Atom.Box>
-      </Atom.Flex>
-    </Atom.Flex>
+    <Atom.Box>
+      <Atom.Heading as="h3" xxl>
+        Wallet
+      </Atom.Heading>
+    </Atom.Box>
   );
 };
 

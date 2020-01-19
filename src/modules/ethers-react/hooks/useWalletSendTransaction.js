@@ -4,10 +4,10 @@
  */
 
 /* --- Global --- */
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /* --- Effect --- */
-export const useWalletSendTransaction = props => {
+export const useWalletSendTransaction = () => {
   const [transaction, setTransaction] = useState(undefined);
   const [wallet, setWallet] = useState(undefined);
 

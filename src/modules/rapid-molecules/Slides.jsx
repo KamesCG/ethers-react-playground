@@ -13,7 +13,7 @@ import {
   ButtonNext
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { Flex } from "horizin-atoms";
+import { Flex } from "rapid-atoms";
 export const Slides = ({ children, ...props }) => {
   const [width, setWidth] = useState(props.naturalSlideHeight);
   const [height, setHeight] = useState(props.naturalSlideHeight);

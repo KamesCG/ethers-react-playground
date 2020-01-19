@@ -1,5 +1,5 @@
 import React from "react";
-import { Component } from "horizin-ui-compose";
+import { Component } from "rapid-ui-compose";
 import Context from "../Context";
 
 /**

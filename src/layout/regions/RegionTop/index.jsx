@@ -3,7 +3,7 @@
  * @description Default top region for site template.
  */
 /* --- Global --- */
-// import {ColorMode} from 'common';
+import { ColorMode } from "@components";
 
 export default props => (
   <Atom.Flex alignCenter between sx={{ variant: "regions.header" }}>
@@ -11,7 +11,7 @@ export default props => (
     <Atom.Flex alignCenter>
       <Atom.Flex>
         <Molecule.Link to="/">
-          <Atom.Heading sx={{ mr: 3, mb: 0 }}>{GLOBAL.siteName}</Atom.Heading>
+          <Atom.Heading sx={{ mr: 3, mb: 2 }}>{GLOBAL.siteName}</Atom.Heading>
         </Molecule.Link>
       </Atom.Flex>
 
@@ -20,36 +20,37 @@ export default props => (
         <Molecule.Menu
           sx={{
             m: 2,
-            mx: 2
+            mx: 1,
+            fontSize: 1
           }}
           items={[
             {
-              label: "Core",
+              label: "System",
               to: "/core"
             },
             {
               label: "UI",
-              to: "/components"
-            },
-            {
-              label: "ERC20",
-              to: "/erc20"
-            },
-            {
-              label: "ERC721",
-              to: "/erc721"
-            },
-            {
-              label: "DeFi",
-              to: "/erc721"
+              to: "/user-interface"
             },
             {
               label: "Examples",
               to: "/examples"
             },
             {
-              label: "Documentation",
-              to: "/documentation"
+              label: "Extensions",
+              to: "/extensions"
+            },
+            {
+              label: "ERC20",
+              to: "/extensions/erc20"
+            },
+            {
+              label: "ERC721",
+              to: "/extensions/erc721"
+            },
+            {
+              label: "DeFi",
+              to: "/extensions/defi"
             }
           ]}
         />
@@ -57,8 +58,18 @@ export default props => (
     </Atom.Flex>
 
     {/* Right */}
-    <Atom.Flex alignCenter>
-      <Atom.Box sx={{ mx: 3 }}>{/* <ColorMode /> */}</Atom.Box>
+    <Atom.Flex
+      alignCenter
+      sx={{ justifyContent: "flex-end", alignContent: "flex-end" }}
+    >
+      <Atom.Box sx={{ mx: 3 }}>
+        <ColorMode />
+      </Atom.Box>
+      <Molecule.Link to="/documentation">
+        <Atom.Span tag sm>
+          Documentation
+        </Atom.Span>
+      </Molecule.Link>
     </Atom.Flex>
   </Atom.Flex>
 );

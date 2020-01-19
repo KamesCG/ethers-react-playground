@@ -21,7 +21,6 @@ export const useContractConnect = (state, dispatch) => {
     if (state.contracts && state.wallet) {
       const runEffect = async () => {
         try {
-          console.log("init contacts");
           Object.keys(state.contracts)
             .filter(contractId => {
               return state.contracts[contractId].address;
@@ -32,7 +31,6 @@ export const useContractConnect = (state, dispatch) => {
                 state.contracts[contractId].abi,
                 state.wallet
               );
-              console.log(contract, "contractInited");
               dispatch({
                 payload: contract,
                 id: state.contracts[contractId].address,
