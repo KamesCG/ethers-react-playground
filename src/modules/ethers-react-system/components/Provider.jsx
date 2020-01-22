@@ -13,7 +13,6 @@ import React, { useContext, useReducer } from "react";
 import Context from "../Context";
 import reducers from "../reducer";
 import {
-  combineReducers,
   enhanceActions,
   contractLoad,
   extensionsInitialize
@@ -27,10 +26,7 @@ const Provider = ({ children, contracts = [], extensions }) => {
 
   /* --- Reducer --- */
   const [state, dispatch] = useReducer(
-    // reducers,
-    combineReducers({
-      core: reducers
-    }),
+    reducers,
     initialState,
     contractLoad(contracts)
   );

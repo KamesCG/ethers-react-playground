@@ -12,7 +12,7 @@ const FACTORY = "factory";
 
 /* --- Function --- */
 export const contractLoad = contracts => initialState => {
-  let contractLibrary = {};
+  const contractLibrary = {};
 
   contracts.forEach(contract => {
     /* --- Standard JSON : Smart Contract JSON --- */
