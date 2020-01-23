@@ -18,22 +18,22 @@ export const useContractConnect = (state, dispatch) => {
 
   /* --- Sign Message :: Effect --- */
   useEffect(() => {
-    if (state.contracts && state.wallet) {
+    if (state.core.contracts && state.core.wallet) {
       const runEffect = async () => {
         try {
-          Object.keys(state.contracts)
+          Object.keys(state.core.contracts)
             .filter(contractId => {
-              return state.contracts[contractId].address;
+              return state.core.contracts[contractId].address;
             })
             .map(contractId => {
-              const contract = new state.instance.Contract(
-                state.contracts[contractId].address,
-                state.contracts[contractId].abi,
-                state.wallet
+              const contract = new state.core.instance.Contract(
+                state.core.contracts[contractId].address,
+                state.core.contracts[contractId].abi,
+                state.core.wallet
               );
               dispatch({
                 payload: contract,
-                id: state.contracts[contractId].address,
+                id: state.core.contracts[contractId].address,
                 type: CONTRACT_INITIALIZE_SUCCESS
               });
             });
@@ -44,7 +44,7 @@ export const useContractConnect = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.wallet]);
+  }, [state.core.wallet]);
 
   /* --- Return : Complete --- */
   return {

@@ -25,48 +25,53 @@ const Provider = ({ children, contracts = [], extensions }) => {
   const extensionsInitialState = extensions.map(({name, initialState}) => {
     return { name, initialState }
   })
-
-  const extensionsReduced = extensionsInitialState.reduce((acc, cur) => {
+  const extensionsStateReduced = extensionsInitialState.reduce((acc, cur) => {
     acc[cur.name] = cur.reducer;
     return acc;
   }, {});
+  const extensionsReducers = extensions.map(({name, reducer}) => {
+    return { name, reducer }
+  })
+  console.log(extensionsReducers)
   
   const context = createContext({
-    instance: ethers,
-    address: undefined,
-    balance: undefined,
-    network: undefined,
-    nonce: undefined,
-    providers: undefined,
-    wallet: undefined,
-    contracts: {},
-    activity: {
-      deploy: {},
-      messages: {},
-      signatures: {},
-      transactions: {}
+    core: {
+      instance: ethers,
+      address: undefined,
+      balance: undefined,
+      network: undefined,
+      nonce: undefined,
+      providers: undefined,
+      wallet: undefined,
+      contracts: {},
+      activity: {
+        deploy: {},
+        messages: {},
+        signatures: {},
+        transactions: {}
+      },
+      requests: {
+        deploy: [],
+        messages: [],
+        signatures: [],
+        transactions: []
+      },
+      library: {
+        contracts: []
+      },
+      store: {
+        contracts: []
+      },
+      enableRequest: () => {},
+      // contractDeployRequest: () => {},
+      // contractDeployFromBytecodeRequest: () => {},
+      // contractInitializeRequest: () => {},
+      // walletSendTransactionRequest: () => {},
+      // walletSignMessageRequest: () => {},
+      // walletSignMessageTypedRequest: () => {},
+      // walletSignTransactionRequest: () => {},
     },
-    requests: {
-      deploy: [],
-      messages: [],
-      signatures: [],
-      transactions: []
-    },
-    library: {
-      contracts: []
-    },
-    store: {
-      contracts: []
-    },
-    enableRequest: () => {},
-    // contractDeployRequest: () => {},
-    // contractDeployFromBytecodeRequest: () => {},
-    // contractInitializeRequest: () => {},
-    // walletSendTransactionRequest: () => {},
-    // walletSignMessageRequest: () => {},
-    // walletSignMessageTypedRequest: () => {},
-    // walletSignTransactionRequest: () => {},
-    ...extensionsReduced
+    ...extensionsStateReduced
   })
 
   // console.log(extensions, "extensions");
@@ -76,7 +81,8 @@ const Provider = ({ children, contracts = [], extensions }) => {
   /* --- Reducer --- */
   const [state, dispatch] = useReducer(
     combineReducers({
-      core: reducers
+      core: reducers,
+      ...extensionsReducers
     }),
     initialState,
     contractLoad(contracts)
@@ -85,7 +91,7 @@ const Provider = ({ children, contracts = [], extensions }) => {
   console.log(state, "state");
 
   /* --- Extensions : Initialize --- */
-  extensionsInitialize(extensions, state, dispatch);
+  // extensionsInitialize(extensions, state, dispatch);
 
   /* --- Enhance Actions --- */
   const actions = enhanceActions(extensions, dispatch);

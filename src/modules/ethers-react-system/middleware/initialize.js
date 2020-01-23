@@ -57,10 +57,13 @@ export const contractLoad = contracts => initialState => {
     }
   });
 
+  const { core } = initialState; 
   return {
-    ...initialState,
-    contracts: {
-      ...contractLibrary
+    core: {
+      ...core,
+      contracts: {
+        ...contractLibrary
+      }
     }
   };
 };

@@ -18,13 +18,13 @@ import {
 export const useWalletSignTransaction = (state, dispatch) => {
   useEffect(() => {
     if (
-      state.provider &&
-      state.wallet &&
-      state.store.transactions &&
-      state.store.transactions.length > 0
+      state.core.provider &&
+      state.core.wallet &&
+      state.core.store.transactions &&
+      state.core.store.transactions.length > 0
     ) {
       const runEffect = async () => {
-        const transaction = state.store.transactions[0];
+        const transaction = state.core.store.transactions[0];
         try {
           dispatch({
             type: WALLET_SIGN_TRANSACTION_SUCCESS,
@@ -43,5 +43,5 @@ export const useWalletSignTransaction = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.store.transactions]);
+  }, [state.core.store.transactions]);
 };

@@ -13,16 +13,16 @@ import { BALANCE_SET } from '../types';
 /* --- Effect --- */
 export const useAccountBalance = (state, dispatch) => {
   useEffect(() => {
-    if (state.wallet) {
+    if (state.core.wallet) {
       const runEffect = async () => {
         try {
-          const balance = await state.wallet.getBalance();
+          const balance = await state.core.wallet.getBalance();
           dispatch({
             payload: {
               bigNumber: balance,
               wei: balance.toString(),
-              eth: state.instance.utils.formatEther(balance),
-              trimmed: state.instance.utils.formatEther(balance).substring(0, 5)
+              eth: state.core.instance.utils.formatEther(balance),
+              trimmed: state.core.instance.utils.formatEther(balance).substring(0, 5)
             },
             type: BALANCE_SET
           });
@@ -32,7 +32,7 @@ export const useAccountBalance = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.wallet]);
+  }, [state.core.wallet]);
 
   return true;
 };

@@ -13,16 +13,16 @@ import { CONTRACT_DEPLOY_SUCCESS, CONTRACT_DEPLOY_FAILURE } from '../types';
 /* --- Component --- */
 export const useContractDeploy = (state, dispatch) => {
   useEffect(() => {
-    if (state.wallet && state.requests.deploy) {
+    if (state.core.wallet && state.core.requests.deploy) {
       const runEffect = async () => {
         let contract;
-        const request = state.requests.deploy[0];
+        const request = state.core.requests.deploy[0];
         const { payload } = request;
         try {
-          contract = new state.instance.ContractFactory(
+          contract = new state.core.instance.ContractFactory(
             payload.contract.abi,
             payload.contract.bytecode,
-            state.wallet
+            state.core.wallet
           );
           const contractDeployRequest = await contract.deploy(
             ...payload.inputs
@@ -45,7 +45,7 @@ export const useContractDeploy = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.requests.deploy]);
+  }, [state.core.requests.deploy]);
 
   return true;
 };

@@ -148,9 +148,9 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         requests: {
-          ...state.requests,
+          ...state.core.requests,
           transactions: [
-            ...state.requests.transactions,
+            ...state.core.requests.transactions,
             {
               ...action
             }
@@ -161,13 +161,13 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         requests: {
-          ...state.requests,
+          ...state.core.requests,
           transactions: []
         },
         activity: {
-          ...state.activity,
+          ...state.core.activity,
           transactions: {
-            ...state.activity.transactions,
+            ...state.core.activity.transactions,
             [action.payload.hash]: {
               status: TRANSACTION_SUBMITTED,
               payload: action.payload
@@ -179,11 +179,11 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         activity: {
-          ...state.activity,
+          ...state.core.activity,
           transactions: {
-            ...state.activity.transactions,
+            ...state.core.activity.transactions,
             [action.payload.transactionHash]: {
-              ...state.activity.transactions[action.payload.transactionHash],
+              ...state.core.activity.transactions[action.payload.transactionHash],
               status: TRANSACTION_COMPLETE,
               complete: action.payload
             }
@@ -194,10 +194,10 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         requests: {
-          ...state.requests,
+          ...state.core.requests,
           transactions: [],
           activity: [
-            ...state.activity,
+            ...state.core.activity,
             {
               status: TRANSACTION_REJECTED,
               payload: action.payload
@@ -210,9 +210,9 @@ const reducerActions = (state, action) => {
         ...state,
         activity: {
           transactions: [
-            ...state.activity.transactions,
+            ...state.core.activity.transactions,
             {
-              ...state.activity.transactions[action.payload.transactionHash],
+              ...state.core.activity.transactions[action.payload.transactionHash],
               status: TRANSACTION_REJECTED,
               error: action.payload
             }
@@ -223,9 +223,9 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         store: {
-          ...state.store,
+          ...state.core.store,
           messages: [
-            ...state.store.messages,
+            ...state.core.store.messages,
             {
               ...action
             }
@@ -248,12 +248,12 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         contracts: {
-          ...state.contracts,
+          ...state.core.contracts,
           [action.id]: {
             api: payload,
-            ...state.contracts[payload.address]
+            ...state.core.contracts[payload.address]
           },
-          ...state.contacts
+          ...state.core.contacts
         }
       };
 
@@ -262,11 +262,11 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         store: {
-          ...state.store,
+          ...state.core.store,
           contracts: []
         },
         contracts: {
-          ...state.contracts,
+          ...state.core.contracts,
           [id]: {
             id,
             address,
@@ -282,9 +282,9 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         requests: {
-          ...state.requests,
+          ...state.core.requests,
           deploy: [
-            ...state.requests.deploy,
+            ...state.core.requests.deploy,
             {
               payload
             }
@@ -295,9 +295,9 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         activity: {
-          ...state.activity,
+          ...state.core.activity,
           deploy: {
-            ...state.activity.deploy,
+            ...state.core.activity.deploy,
             [action.payload.hash]: {
               status: CONTRACT_DEPLOY_SUBMITTED,
               payload: action.payload
@@ -309,11 +309,11 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         activity: {
-          ...state.activity,
+          ...state.core.activity,
           deploy: {
-            ...state.activity.deploy,
+            ...state.core.activity.deploy,
             [action.payload.transactionHash]: {
-              ...state.activity.deploy[action.payload.transactionHash],
+              ...state.core.activity.deploy[action.payload.transactionHash],
               status: CONTRACT_DEPLOY_COMPLETE,
               complete: action.payload
             }
@@ -324,9 +324,9 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         activity: {
-          ...state.store,
+          ...state.core.store,
           deploy: {
-            ...state.activity.deploy,
+            ...state.core.activity.deploy,
             [action.payload.hash]: {
               status: CONTRACT_DEPLOY_FAILURE,
               payload: action.payload
@@ -340,9 +340,9 @@ const reducerActions = (state, action) => {
         ...state,
         activity: {
           deploy: [
-            ...state.activity.deploy,
+            ...state.core.activity.deploy,
             {
-              ...state.activity.deploy[action.payload.transactionHash],
+              ...state.core.activity.deploy[action.payload.transactionHash],
               status: CONTRACT_DEPLOY_REJECTED,
               error: action.payload
             }
@@ -355,9 +355,9 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         store: {
-          ...state.store,
+          ...state.core.store,
           deploy: [
-            ...state.store.deploy,
+            ...state.core.store.deploy,
             {
               payload,
               id: delta

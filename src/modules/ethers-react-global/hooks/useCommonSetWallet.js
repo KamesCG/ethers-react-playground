@@ -13,7 +13,7 @@ import { SET_WALLET_SUCCESS, SET_WALLET_FAILURE } from '../types';
 /* --- Effect --- */
 export const useCommonSetWallet = (state, dispatch) => {
   useEffect(() => {
-    if (state.address) {
+    if (state.core.address) {
       const runEffect = async () => {
         try {
           const provider = await ethers.providers.Web3Provider(
@@ -33,7 +33,7 @@ export const useCommonSetWallet = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.address]);
+  }, [state.core.address]);
 
   return true;
 };

@@ -13,7 +13,7 @@ import { SET_ADDRESS } from "../types";
 /* --- Effect --- */
 export const useAddressSet = (state, dispatch) => {
   useEffect(() => {
-    if (state.isEnableSuccess) {
+    if (state.core.isEnableSuccess) {
       const runEffect = async () => {
         try {
           const accounts = await ethereum.send("eth_requestAccounts");

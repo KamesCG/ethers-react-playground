@@ -30,7 +30,7 @@ export const useWalletProviderInstance = (state, dispatch) => {
       }
     };
     runEffect();
-  }, [state.wallet]);
+  }, [state.core.wallet]);
 
   return true;
 };

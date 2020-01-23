@@ -13,8 +13,8 @@ export const useContractLoadIntoLibrary = (state, dispatch) => {
   const [isLoadedIntoLibrary, setLoadedIntoLibrary] = useState();
 
   useEffect(() => {
-    if (state.store.library && state.store.library.length > 0) {
-      const request = state.store.library[0];
+    if (state.core.store.library && state.core.store.library.length > 0) {
+      const request = state.core.store.library[0];
       dispatch({
         type: 'LOAD_CONTRACT_INTO_LIBRARY_SUCCESS',
         id: request.id,
@@ -22,7 +22,7 @@ export const useContractLoadIntoLibrary = (state, dispatch) => {
       });
       setLoadedIntoLibrary(true);
     }
-  }, [state.wallet, state.store.contracts]);
+  }, [state.core.wallet, state.core.store.contracts]);
 
   return isLoadedIntoLibrary;
 };

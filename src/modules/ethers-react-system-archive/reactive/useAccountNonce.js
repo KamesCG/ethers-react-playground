@@ -13,10 +13,10 @@ import { NONCE_SET } from "../types";
 /* --- Effect --- */
 export const useAccountNonce = (state, dispatch) => {
   useEffect(() => {
-    if (state.wallet) {
+    if (state.core.wallet) {
       const runEffect = async () => {
         try {
-          const nonce = await state.wallet.getTransactionCount();
+          const nonce = await state.core.wallet.getTransactionCount();
           dispatch({
             payload: nonce,
             type: NONCE_SET
@@ -27,7 +27,7 @@ export const useAccountNonce = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.wallet]);
+  }, [state.core.wallet]);
 
   return true;
 };
