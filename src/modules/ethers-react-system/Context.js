@@ -57,7 +57,7 @@ const me = (extensionsInitialState) => {
     store: {
       contracts: []
     },
-    enableRequest: () => {},
+    enableRequest: () => {}
     // contractDeployRequest: () => {},
     // contractDeployFromBytecodeRequest: () => {},
     // contractInitializeRequest: () => {},
@@ -65,7 +65,6 @@ const me = (extensionsInitialState) => {
     // walletSignMessageRequest: () => {},
     // walletSignMessageTypedRequest: () => {},
     // walletSignTransactionRequest: () => {},
-    ...extensionsInitialState
   });
 }
 const Context = me()

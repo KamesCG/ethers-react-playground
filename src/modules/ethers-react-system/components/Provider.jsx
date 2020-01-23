@@ -24,15 +24,17 @@ import {
 const Provider = ({ children, contracts = [], extensions }) => {
   const extensionsInitialState = extensions.map(({name, initialState}) => {
     return { name, initialState }
-  })
-  const extensionsStateReduced = extensionsInitialState.reduce((acc, cur) => {
+  }).reduce((acc, cur) => {
     acc[cur.name] = cur.reducer;
     return acc;
   }, {});
+  
   const extensionsReducers = extensions.map(({name, reducer}) => {
     return { name, reducer }
-  })
-  console.log(extensionsReducers)
+  }).reduce((acc, cur) => {
+    acc[cur.name] = cur.reducer;
+    return acc;
+  }, {});
   
   const context = createContext({
     core: {
@@ -71,10 +73,9 @@ const Provider = ({ children, contracts = [], extensions }) => {
       // walletSignMessageTypedRequest: () => {},
       // walletSignTransactionRequest: () => {},
     },
-    ...extensionsStateReduced
+    ...extensionsInitialState,
   })
 
-  // console.log(extensions, "extensions");
   /* --- Ethers Context --- */
   const initialState = useContext(context);
 
@@ -88,7 +89,7 @@ const Provider = ({ children, contracts = [], extensions }) => {
     contractLoad(contracts)
   );
 
-  console.log(state, "state");
+  console.log("state", state);
 
   /* --- Extensions : Initialize --- */
   // extensionsInitialize(extensions, state, dispatch);

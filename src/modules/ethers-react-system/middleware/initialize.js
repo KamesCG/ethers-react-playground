@@ -59,6 +59,7 @@ export const contractLoad = contracts => initialState => {
 
   const { core } = initialState; 
   return {
+    ...initialState,
     core: {
       ...core,
       contracts: {
