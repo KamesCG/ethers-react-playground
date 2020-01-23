@@ -48,7 +48,7 @@ import {
   TRANSACTION_REJECTED
 } from "./status";
 
-const reducerActions = (state, action) => {
+const reducerActions = (extensions) => (state, action) => {
   const { id, payload, type } = action;
   switch (type) {
     /* ----------------------- */
