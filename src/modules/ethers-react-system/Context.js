@@ -29,42 +29,44 @@ import { ethers } from "ethers";
  * @property {Function} signMessage
  * @property {Function} signMessageTyped
  */
-
-const Context = createContext({
-  instance: ethers,
-  address: undefined,
-  balance: undefined,
-  network: undefined,
-  nonce: undefined,
-  providers: undefined,
-  wallet: undefined,
-  contracts: {},
-  activity: {
-    deploy: {},
-    messages: {},
-    signatures: {},
-    transactions: {}
-  },
-  requests: {
-    deploy: [],
-    messages: [],
-    signatures: [],
-    transactions: []
-  },
-  library: {
-    contracts: []
-  },
-  store: {
-    contracts: []
-  },
-  enableRequest: () => {}
-  // contractDeployRequest: () => {},
-  // contractDeployFromBytecodeRequest: () => {},
-  // contractInitializeRequest: () => {},
-  // walletSendTransactionRequest: () => {},
-  // walletSignMessageRequest: () => {},
-  // walletSignMessageTypedRequest: () => {},
-  // walletSignTransactionRequest: () => {}
-});
+const me = (extensionsInitialState) => {
+  return createContext({
+    instance: ethers,
+    address: undefined,
+    balance: undefined,
+    network: undefined,
+    nonce: undefined,
+    providers: undefined,
+    wallet: undefined,
+    contracts: {},
+    activity: {
+      deploy: {},
+      messages: {},
+      signatures: {},
+      transactions: {}
+    },
+    requests: {
+      deploy: [],
+      messages: [],
+      signatures: [],
+      transactions: []
+    },
+    library: {
+      contracts: []
+    },
+    store: {
+      contracts: []
+    },
+    enableRequest: () => {}
+    // contractDeployRequest: () => {},
+    // contractDeployFromBytecodeRequest: () => {},
+    // contractInitializeRequest: () => {},
+    // walletSendTransactionRequest: () => {},
+    // walletSignMessageRequest: () => {},
+    // walletSignMessageTypedRequest: () => {},
+    // walletSignTransactionRequest: () => {},
+  });
+}
+const Context = me()
 
 export default Context;

@@ -17,13 +17,13 @@ import {
 export const useWalletSendTransaction = (state, dispatch) => {
   useEffect(() => {
     if (
-      state.wallet &&
-      state.requests.transactions &&
-      state.requests.transactions.length > 0
+      state.core.wallet &&
+      state.core.requests.transactions &&
+      state.core.requests.transactions.length > 0
     ) {
       const runEffect = async () => {
-        const transaction = state.requests.transactions[0];
-        const signature = await state.wallet.sendTransaction(
+        const transaction = state.core.requests.transactions[0];
+        const signature = await state.core.wallet.sendTransaction(
           transaction.payload
         );
         try {
@@ -40,5 +40,5 @@ export const useWalletSendTransaction = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.requests.transactions]);
+  }, [state.core.requests.transactions]);
 };

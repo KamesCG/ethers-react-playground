@@ -18,13 +18,13 @@ import { CONTRACT_DEPLOY_SUBMITTED } from "../status";
 /* --- Effect --- */
 export const useContractDeployMonitor = (state, dispatch) => {
   useEffect(() => {
-    if (filterTransaction(state.activity.deploy)) {
+    if (filterTransaction(state.core.activity.deploy)) {
       const runEffect = async () => {
-        const transactionRequest = Object.keys(state.activity.deploy).filter(
-          tx => state.activity.deploy[tx].status === CONTRACT_DEPLOY_SUBMITTED
+        const transactionRequest = Object.keys(state.core.activity.deploy).filter(
+          tx => state.core.activity.deploy[tx].status === CONTRACT_DEPLOY_SUBMITTED
         )[0];
-        const transactionConfirmation = await state.wallet.provider.waitForTransaction(
-          state.activity.deploy[transactionRequest].payload.hash
+        const transactionConfirmation = await state.core.wallet.provider.waitForTransaction(
+          state.core.activity.deploy[transactionRequest].payload.hash
         );
         console.log(transactionConfirmation, "contracttransactionConfirmation");
         try {
@@ -41,7 +41,7 @@ export const useContractDeployMonitor = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.activity.deploy]);
+  }, [state.core.activity.deploy]);
 };
 
 const filterTransaction = txList =>

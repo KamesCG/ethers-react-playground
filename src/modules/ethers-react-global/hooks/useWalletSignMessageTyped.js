@@ -19,25 +19,25 @@ import {
 export const useWalletSignMessageTyped = (state, dispatch) => {
   useEffect(() => {
     if (
-      state.provider &&
-      state.wallet &&
-      state.store.messages &&
-      state.store.messages.length > 0
+      state.core.provider &&
+      state.core.wallet &&
+      state.core.store.messages &&
+      state.core.store.messages.length > 0
     ) {
       const runEffect = async () => {
         let signature;
-        const messageRequest = state.store.messages[0];
+        const messageRequest = state.core.store.messages[0];
         try {
           switch (messageRequest.type) {
             case WALLET_SIGN_TYPED_MESSAGE_REQUEST:
-              signature = await state.provider.injected.send(
+              signature = await state.core.provider.injected.send(
                 'eth_signTypedData',
-                [messageRequest.payload, state.address]
+                [messageRequest.payload, state.core.address]
               );
               setRequested(true);
               break;
             default:
-              signature = await state.wallet.signMessage(
+              signature = await state.core.wallet.signMessage(
                 messageRequest.payload
               );
               break;
@@ -59,5 +59,5 @@ export const useWalletSignMessageTyped = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.store.messages]);
+  }, [state.core.store.messages]);
 };

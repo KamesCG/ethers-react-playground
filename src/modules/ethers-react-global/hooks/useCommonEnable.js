@@ -14,7 +14,7 @@ import { ENABLE_SUCCESS, ENABLE_FAILURE } from '../types';
 /* --- Effect --- */
 export const useCommonEnable = (state, dispatch) => {
   useEffect(() => {
-    if (state.isEnableRequested) {
+    if (state.core.isEnableRequested) {
       const runEffect = async () => {
         try {
           const accounts = await window.ethereum.enable();
@@ -32,7 +32,7 @@ export const useCommonEnable = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.isEnableRequested]);
+  }, [state.core.isEnableRequested]);
 
   return true;
 };

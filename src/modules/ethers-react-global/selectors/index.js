@@ -8,12 +8,12 @@ export const useEnableSelector = state => {
   const [isDispatched, setDispatched] = useState(false);
 
   useEffect(() => {
-    if (state.isEnableRequested) setDispatched(true);
-  }, [state.isEnableRequested]);
+    if (state.core.isEnableRequested) setDispatched(true);
+  }, [state.core.isEnableRequested]);
 
   useEffect(() => {
-    if (state.isEnableSuccess) setEnabled(true);
-  }, [state.isEnableSuccess]);
+    if (state.core.isEnableSuccess) setEnabled(true);
+  }, [state.core.isEnableSuccess]);
 
   return {
     ready: isEnabled,

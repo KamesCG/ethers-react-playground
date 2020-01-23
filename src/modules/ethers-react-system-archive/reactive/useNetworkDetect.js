@@ -13,7 +13,7 @@ import { NETWORK_SET, ENS_ADDRESS_SET } from '../types';
 /* --- Component --- */
 export const useNetworkDetect = (state, dispatch) => {
   useEffect(() => {
-    if (state.wallet) {
+    if (state.core.wallet) {
       const runEffect = async () => {
         try {
           // TODO(@kames) Be better.
@@ -23,20 +23,20 @@ export const useNetworkDetect = (state, dispatch) => {
             '4': 'rinkeby',
             '5': 'goerli',
             '42': 'kovan'
-          }[state.wallet.provider._web3Provider.networkVersion];
+          }[state.core.wallet.provider._web3Provider.networkVersion];
 
           // Set network name and chainId.
           dispatch({
             payload: {
               name: name,
-              chainId: state.wallet.provider._web3Provider.networkVersion
+              chainId: state.core.wallet.provider._web3Provider.networkVersion
             },
             type: NETWORK_SET
           });
 
           // Set network ENS Address
           // dispatch({
-          //   payload: state.wallet.network.ensAddress,
+          //   payload: state.core.wallet.network.ensAddress,
           //   type: ENS_ADDRESS_SET
           // });
         } catch (error) {
@@ -45,7 +45,7 @@ export const useNetworkDetect = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.wallet]);
+  }, [state.core.wallet]);
 
   return true;
 };

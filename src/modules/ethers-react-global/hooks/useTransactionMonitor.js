@@ -18,16 +18,16 @@ import { TRANSACTION_SUBMITTED } from '../transactionStatus';
 /* --- Effect --- */
 export const useTransactionMonitor = (state, dispatch) => {
   useEffect(() => {
-    if (filterTransaction(state.activity.transactions)) {
-      const txWatch = filterTransaction(state.activity.transactions);
+    if (filterTransaction(state.core.activity.transactions)) {
+      const txWatch = filterTransaction(state.core.activity.transactions);
       const runEffect = async () => {
         const transactionRequest = Object.keys(
-          state.activity.transactions
+          state.core.activity.transactions
         ).filter(
-          tx => state.activity.transactions[tx].status === TRANSACTION_SUBMITTED
+          tx => state.core.activity.transactions[tx].status === TRANSACTION_SUBMITTED
         )[0];
-        const transactionConfirmation = await state.wallet.provider.waitForTransaction(
-          state.activity.transactions[transactionRequest].payload.hash
+        const transactionConfirmation = await state.core.wallet.provider.waitForTransaction(
+          state.core.activity.transactions[transactionRequest].payload.hash
         );
         try {
           dispatch({
@@ -43,7 +43,7 @@ export const useTransactionMonitor = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.activity.transactions]);
+  }, [state.core.activity.transactions]);
 };
 
 const filterTransaction = txList =>

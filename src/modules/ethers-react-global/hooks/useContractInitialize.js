@@ -15,16 +15,16 @@ export const useContractInitialize = (state, dispatch) => {
 
   useEffect(() => {
     if (
-      state.wallet &&
-      state.store.contracts &&
-      state.store.contracts.length > 0
+      state.core.wallet &&
+      state.core.store.contracts &&
+      state.core.store.contracts.length > 0
     ) {
       const runEffect = async () => {
         let contract;
-        const request = state.store.contracts[0];
+        const request = state.core.store.contracts[0];
         const { payload } = request;
         try {
-          const wallet = state.wallet;
+          const wallet = state.core.wallet;
           contract = new ethers.Contract(payload.address, payload.abi, wallet);
           dispatch({
             type: 'INIT_CONTRACT_SUCCESS',
@@ -44,7 +44,7 @@ export const useContractInitialize = (state, dispatch) => {
       };
       runEffect();
     }
-  }, [state.wallet, state.store.contracts]);
+  }, [state.core.wallet, state.core.store.contracts]);
 
   return true;
 };

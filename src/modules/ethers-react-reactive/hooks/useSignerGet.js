@@ -14,9 +14,9 @@ import { SIGNER_GET_SUCCESS, SIGNER_GET_FAILURE } from '../types';
 export const useSignerGet = (state, dispatch) => {
   useEffect(() => {
     const runEffect = async () => {
-      if (state.injected) {
-        const provider = new state.instance.providers.Web3Provider(
-          state.injected
+      if (state.core.injected) {
+        const provider = new state.core.instance.providers.Web3Provider(
+          state.core.injected
         );
         const signer = await provider.getSigner();
         dispatch({
@@ -31,7 +31,7 @@ export const useSignerGet = (state, dispatch) => {
       }
     };
     runEffect();
-  }, [state.injected]);
+  }, [state.core.injected]);
 
   return true;
 };
