@@ -7,10 +7,15 @@ export const extension = {
   initialState: {
     blockCurrent: 0,
     reactive: {
+      getAccountBalance: false,
+      getAccountOnLoad: false,
+      getAccountNonce: false,
+      getProviderSigner: false,
       watchAccountBalance: false,
       watchAccountOnChange: false,
       watchAccountNonce: false,
-      watchBlockCurrent: false
+      watchBlockCurrent: false,
+      watchNetworkOnChange: false
     }
   }
 };

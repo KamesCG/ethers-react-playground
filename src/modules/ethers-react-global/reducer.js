@@ -2,9 +2,9 @@ import {
   ENABLE_REQUEST,
   ENABLE_SUCCESS,
   ENABLE_FAILURE,
-  SET_PROVIDER,
-  SET_PROVIDER_MULTIPLE,
-  SET_PROVIDER_STATUS,
+  PROVIDER_SET,
+  PROVIDER_SET_MULTIPLE,
+  PROVIDER_SET_STATUS,
   WALLET_SIGN_TYPED_MESSAGE_REQUEST,
   WALLET_SIGN_MESSAGE_REQUEST,
   INIT_CONTRACT_REQUEST,
@@ -71,17 +71,17 @@ const reducerActions = (state, action) => {
         isEnableRequested: false,
         isEnableSuccess: false
       };
-    case SET_PROVIDER:
+    case PROVIDER_SET:
       return {
         ...state,
         provider: action.payload
       };
-    case SET_PROVIDER_MULTIPLE:
+    case PROVIDER_SET_MULTIPLE:
       return {
         ...state,
         providers: action.payload
       };
-    case SET_PROVIDER_STATUS:
+    case PROVIDER_SET_STATUS:
       return {
         ...state,
         providerStatus: action.payload

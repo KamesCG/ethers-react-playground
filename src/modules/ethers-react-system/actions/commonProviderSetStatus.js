@@ -4,6 +4,6 @@
  */
 export const providerSetStatus = (state, dispatch) => ({ provider }) =>
   dispatch({
-    type: 'SET_PROVIDER_STATUS',
+    type: "PROVIDER_SET_STATUS",
     payload: provider
   });

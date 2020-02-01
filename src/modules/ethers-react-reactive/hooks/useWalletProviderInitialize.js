@@ -8,7 +8,7 @@
 import { useEffect, useState } from "react";
 
 /* --- Local --- */
-import { SET_PROVIDER, SET_PROVIDER_STATUS } from "../types";
+import { PROVIDER_SET, PROVIDER_SET_STATUS } from "../types";
 
 /* --- Effect --- */
 export const useWalletProviderInitialize = (state, dispatch) => {
@@ -22,13 +22,13 @@ export const useWalletProviderInitialize = (state, dispatch) => {
           );
 
           dispatch({
-            type: SET_PROVIDER,
+            type: PROVIDER_SET,
             payload: provider
           });
           setProviderInitialize(true);
         } catch (error) {
           dispatch({
-            type: SET_PROVIDER_STATUS,
+            type: PROVIDER_SET_STATUS,
             payload: undefined
           });
         }

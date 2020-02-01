@@ -1,8 +1,6 @@
 /* --- Local --- */
 import { FormDomainPurchase } from "@forms";
 
-console.log(FormDomainPurchase, "DomainPurchaseDomainPurchase");
-
 /* --- Page : Component --- */
 const DashboardOverviewPage = props => {
   return (

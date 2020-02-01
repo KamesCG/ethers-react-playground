@@ -1,7 +1,5 @@
 /**
  * @function useAccountNonce
- * @param {Object} state
- * @param {Object} dispatch
  */
 
 /* --- Global --- */
@@ -13,11 +11,10 @@ import { NONCE_SET } from "../types";
 /* --- Effect --- */
 export const useAccountNonce = (state, dispatch) => {
   useEffect(() => {
-    if (state.address && state.wallet) {
-      const runEffect = async () => {
+    if (state.reactive.getAccountNonce && state.address && state.wallet) {
+      (async () => {
         try {
           const nonce = await state.wallet.getTransactionCount();
-
           dispatch({
             payload: nonce,
             type: NONCE_SET
@@ -25,10 +22,7 @@ export const useAccountNonce = (state, dispatch) => {
         } catch (error) {
           console.log(error);
         }
-      };
-      runEffect();
+      })();
     }
-  }, [state.wallet, state.address]);
-
-  return true;
+  }, [state.address, state.wallet]);
 };

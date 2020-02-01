@@ -6,14 +6,14 @@
 
 /* --- Global --- */
 import { useEffect } from "react";
-
+import { utils } from "ethers";
 /* --- Local --- */
 import { BALANCE_SET } from "../types";
 
 /* --- Effect --- */
 export const useAccountBalance = (state, dispatch) => {
   useEffect(() => {
-    if (state.address && state.wallet) {
+    if (state.reactive.getAccountBalance && state.address && state.wallet) {
       (async () => {
         try {
           const balance = await state.wallet.getBalance();
@@ -21,8 +21,8 @@ export const useAccountBalance = (state, dispatch) => {
             payload: {
               bigNumber: balance,
               wei: balance.toString(),
-              eth: state.instance.utils.formatEther(balance),
-              trimmed: state.instance.utils.formatEther(balance).substring(0, 5)
+              eth: utils.formatEther(balance),
+              trimmed: utils.formatEther(balance).substring(0, 5)
             },
             type: BALANCE_SET
           });

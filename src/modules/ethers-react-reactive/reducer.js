@@ -1,7 +1,7 @@
 import {
-  SET_PROVIDER,
-  SET_PROVIDER_MULTIPLE,
-  SET_PROVIDER_STATUS,
+  PROVIDER_SET,
+  PROVIDER_SET_MULTIPLE,
+  PROVIDER_SET_STATUS,
   BALANCE_SET,
   NONCE_SET,
   NETWORK_SET,
@@ -17,17 +17,17 @@ const reducerActions = (state, action) => {
         ...state,
         currentBlock: action.payload
       };
-    case SET_PROVIDER:
+    case PROVIDER_SET:
       return {
         ...state,
         provider: action.payload
       };
-    case SET_PROVIDER_MULTIPLE:
+    case PROVIDER_SET_MULTIPLE:
       return {
         ...state,
         providers: action.payload
       };
-    case SET_PROVIDER_STATUS:
+    case PROVIDER_SET_STATUS:
       return {
         ...state,
         providerStatus: action.payload

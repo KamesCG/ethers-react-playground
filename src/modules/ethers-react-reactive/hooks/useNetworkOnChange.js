@@ -7,15 +7,21 @@
 /* --- Global --- */
 import { useEffect } from "react";
 
+/* --- Local --- */
+import { NETWORK_CHANGE_SET } from "../types";
+
 /* --- Effect --- */
-export const useAccountOnChange = (state, dispatch) => {
+export const useNetworkOnChange = (state, dispatch) => {
   /* --- Account Change : Listen Event --- */
   useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.on("networkChanged", function(networkId) {
-        console.log(networkId, "networkId");
+    if (state.reactive.watchNetworkOnChange && window.ethereum) {
+      window.ethereum.on("networkChanged", networkId => {
+        dispatch({
+          type: NETWORK_CHANGE_SET,
+          payload: networkId
+        });
       });
+      return true;
     }
-    return true;
   }, []);
 };

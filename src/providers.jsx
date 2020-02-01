@@ -10,8 +10,12 @@ import theme from "./assets/theme";
 /* --- Module --- */
 import { contracts } from "./blockchain";
 
+Reactive.initialState.reactive.getAccountBalance = true;
+Reactive.initialState.reactive.getAccountNonce = true;
+Reactive.initialState.reactive.getAccountOnLoad = true;
+Reactive.initialState.reactive.getProviderSigner = true;
 Reactive.initialState.reactive.watchAccountOnChange = true;
-Reactive.initialState.reactive.watchBlockCurrent = false;
+Reactive.initialState.reactive.watchBlockCurrent = true;
 
 /* --- Component --- */
 export default props => (
