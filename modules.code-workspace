@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "src/modules/ethers-react-global"
+    },
+    {
+      "path": "src/modules/ethers-react-reactive"
+    },
+    {
+      "path": "src/modules/ethers-react-system"
+    },
+    {
+      "path": "src/modules/ethers-react-ui"
+    },
+    {
+      "path": "src/modules/ethers-react-erc20"
+    }
+  ]
+}

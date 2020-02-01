@@ -1,9 +1,9 @@
-import { hashCode } from "./utilities";
 import {
   ENABLE_REQUEST,
   ENABLE_SUCCESS,
   ENABLE_FAILURE,
   SET_PROVIDER,
+  SET_PROVIDER_MULTIPLE,
   SET_PROVIDER_STATUS,
   WALLET_SIGN_TYPED_MESSAGE_REQUEST,
   WALLET_SIGN_MESSAGE_REQUEST,
@@ -50,8 +50,7 @@ import {
 } from "./status";
 
 const reducerActions = (state, action) => {
-  const { delta, id, payload, type } = action;
-  switch (type) {
+  switch (action.type) {
     /* ----------------------- */
     /*         Common          */
     /* ----------------------- */
@@ -75,38 +74,43 @@ const reducerActions = (state, action) => {
     case SET_PROVIDER:
       return {
         ...state,
-        providers: payload
+        provider: action.payload
+      };
+    case SET_PROVIDER_MULTIPLE:
+      return {
+        ...state,
+        providers: action.payload
       };
     case SET_PROVIDER_STATUS:
       return {
         ...state,
-        providerStatus: payload
+        providerStatus: action.payload
       };
     case SET_ADDRESS:
       return {
         ...state,
-        address: payload
+        address: action.payload
       };
 
     case BALANCE_SET:
       return {
         ...state,
-        balance: payload
+        balance: action.payload
       };
     case NONCE_SET:
       return {
         ...state,
-        nonce: payload
+        nonce: action.payload
       };
     case NETWORK_SET:
       return {
         ...state,
-        network: payload
+        network: action.payload
       };
     case ENS_ADDRESS_SET:
       return {
         ...state,
-        ensAddress: payload
+        ensAddress: action.payload
       };
 
     /* ----------------------- */
@@ -119,12 +123,12 @@ const reducerActions = (state, action) => {
     case SIGNER_GET_SUCCESS:
       return {
         ...state,
-        wallet: payload
+        wallet: action.payload
       };
     case SIGNER_GET_FAILURE:
       return {
-        ...state
-        // wallet: error
+        ...state,
+        wallet: false
       };
     /* ----------------------- */
     /*         Wallet          */
@@ -132,12 +136,12 @@ const reducerActions = (state, action) => {
     case WALLET_PROVIDER_GET_SUCCESS:
       return {
         ...state,
-        injected: payload
+        injected: action.payload
       };
     case SET_WALLET:
       return {
         ...state
-        // wallet: payload.wallet
+        // wallet: action.payload.wallet
       };
     case SET_WALLET_FAILURE:
       return {
@@ -236,7 +240,7 @@ const reducerActions = (state, action) => {
       return {
         ...state,
         messages: {
-          [id]: payload
+          [id]: action.payload
         }
       };
 
@@ -250,15 +254,15 @@ const reducerActions = (state, action) => {
         contracts: {
           ...state.contracts,
           [action.id]: {
-            api: payload,
-            ...state.contracts[payload.address]
+            api: action.payload,
+            ...state.contracts[action.payload.address]
           },
           ...state.contacts
         }
       };
 
     case INIT_CONTRACT_REQUEST:
-      const { address, contract } = payload;
+      const { address, contract } = action.payload;
       return {
         ...state,
         store: {
@@ -286,7 +290,7 @@ const reducerActions = (state, action) => {
           deploy: [
             ...state.requests.deploy,
             {
-              payload
+              action
             }
           ]
         }
@@ -350,25 +354,9 @@ const reducerActions = (state, action) => {
         }
       };
 
-    // Deploy from Bytecode
-    case CONTRACT_DEPLOY_FROM_BYTECODE_REQUEST:
-      return {
-        ...state,
-        store: {
-          ...state.store,
-          deploy: [
-            ...state.store.deploy,
-            {
-              payload,
-              id: delta
-            }
-          ]
-        }
-      };
-
     default:
-      // return { ...state };
-      throw new Error(`No Reducer Type Set: ${action.type}`);
+      return state;
+    // throw new Error(`No Reducer Type Set: ${type}`);
   }
 };
 

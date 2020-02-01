@@ -36,28 +36,14 @@ const Context = createContext({
   balance: undefined,
   network: undefined,
   nonce: undefined,
+  provider: undefined,
   providers: undefined,
   wallet: undefined,
   contracts: {},
-  activity: {
-    deploy: {},
-    messages: {},
-    signatures: {},
-    transactions: {}
-  },
-  requests: {
-    deploy: [],
-    messages: [],
-    signatures: [],
-    transactions: []
-  },
   library: {
     contracts: []
-  },
-  store: {
-    contracts: []
-  },
-  enableRequest: () => {}
+  }
+  // enableRequest: () => {}
   // contractDeployRequest: () => {},
   // contractDeployFromBytecodeRequest: () => {},
   // contractInitializeRequest: () => {},

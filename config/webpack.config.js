@@ -311,6 +311,10 @@ module.exports = function(webpackEnv) {
           __dirname,
           "../src/modules/ethers-react-ui"
         ),
+        "@ethers-react/erc20": path.resolve(
+          __dirname,
+          "../src/modules/ethers-react-erc20"
+        ),
         "rapid-atoms": path.resolve(__dirname, "../src/modules/rapid-atoms"),
         "rapid-molecules": path.resolve(
           __dirname,

@@ -5,16 +5,23 @@
 /* --- Component --- */
 const RegionAside = ({ sx, ...props }) => {
   return (
-    <Atom.Flex column sx={sx}>
+    <Atom.Flex column gradient="blueDeep" direction={180} sx={sx}>
       <Atom.Flex column>
-        <Atom.Box sx={{ bg: "#172692", p: [3, 3, 3] }}>
-          <Atom.Heading>Space</Atom.Heading>
+        <Atom.Flex
+          center
+          column
+          gradient="blueDark"
+          sx={{ bg: "#172692", px: [3, 3, 3], py: 4 }}
+        >
           <Molecule.Link to="/">
             <Atom.Heading lg heavy sx={{ mb: 0 }}>
-              Rapid Adventures
+              MillionDevs
             </Atom.Heading>
           </Molecule.Link>
-        </Atom.Box>
+          <Atom.Heading as="h4" md thin>
+            Be the "1" in OneMillionDevs
+          </Atom.Heading>
+        </Atom.Flex>
 
         <Atom.HorizontalRule
           sx={{
@@ -39,10 +46,6 @@ const RegionAside = ({ sx, ...props }) => {
             flexDirection: "column"
           }}
         />
-
-        <Atom.Heading md sx={{ mt: 4 }}>
-          Developer Menu
-        </Atom.Heading>
         <Molecule.Menu
           expanded
           direction="column"
@@ -56,7 +59,16 @@ const RegionAside = ({ sx, ...props }) => {
             my: 1,
             flexDirection: "column"
           }}
-          items={menuDev}
+          items={[
+            {
+              label: "Dashboard",
+              to: "/dashboard"
+            },
+            {
+              label: "Community",
+              to: "/dashboard/community"
+            }
+          ]}
         />
       </Atom.Box>
     </Atom.Flex>

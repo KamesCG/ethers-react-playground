@@ -4,7 +4,14 @@ import { Router } from "@reach/router";
 
 /* --- Local --- */
 import { Site } from "@templates";
-import { Home, Core, UserInterface, Extensions, Examples } from "@pages";
+import {
+  Home,
+  GettingStarted,
+  UserInterface,
+  Extensions,
+  Examples,
+  Documentation
+} from "@pages";
 
 /* --- Component --- */
 const IndexPage = () => (
@@ -14,8 +21,9 @@ const IndexPage = () => (
       style={{ display: "flex", flex: 1, height: "100%", width: "100%" }}
     >
       <Home path="/" />
-      <Core path="/core" />
+      <GettingStarted path="/started" />
       <Examples path="/examples/*" />
+      <Documentation path="/documentation/*" />
       <UserInterface path="/user-interface" />
       <Extensions path="/extensions/*" />
     </Router>

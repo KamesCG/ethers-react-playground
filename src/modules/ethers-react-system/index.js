@@ -1,6 +1,8 @@
+import * as helpers from "./helpers";
 import * as hooks from "./hooks";
-export { hooks };
-export { ethers } from "ethers";
+import * as selectors from "./selectors";
+export { helpers, hooks, selectors };
+export { ethers, utils } from "ethers";
 export { default as EthersContext } from "./Context";
 export { default as withEthers } from "./withContext";
 export { default as EthersProvider } from "./components/Provider";

@@ -25,12 +25,12 @@ export default props => (
           }}
           items={[
             {
-              label: "System",
-              to: "/core"
+              label: "Installation",
+              to: "/started"
             },
             {
-              label: "UI",
-              to: "/user-interface"
+              label: "Documentation",
+              to: "/documentation"
             },
             {
               label: "Examples",
@@ -39,18 +39,6 @@ export default props => (
             {
               label: "Extensions",
               to: "/extensions"
-            },
-            {
-              label: "ERC20",
-              to: "/extensions/erc20"
-            },
-            {
-              label: "ERC721",
-              to: "/extensions/erc721"
-            },
-            {
-              label: "DeFi",
-              to: "/extensions/defi"
             }
           ]}
         />
@@ -68,6 +56,11 @@ export default props => (
       <Molecule.Link to="/documentation">
         <Atom.Span tag sm>
           Documentation
+        </Atom.Span>
+      </Molecule.Link>
+      <Molecule.Link to="/dashboard" sx={{ ml: 2 }}>
+        <Atom.Span tag sm>
+          dApp
         </Atom.Span>
       </Molecule.Link>
     </Atom.Flex>

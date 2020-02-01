@@ -1,14 +1,14 @@
 const ShowcaseHome = props => {
   return (
     <>
-      <Atom.Flex center column sx={{py: 5, width: '100%'}}>
-        <Atom.BackgroundGradient gradient="frost" />
+      <Atom.Flex center column sx={{ boxShadow: 0, py: 5, width: "100%" }}>
+        <Atom.BackgroundGradient sx={{ bg: "smoke" }} />
         <Atom.Container
           sx={{
-            color: 'white',
-            maxWidth: ['100%', '100%', 880, 1080],
-            py: [5],
-          }}>
+            maxWidth: ["100%", "100%", 880, 1080],
+            py: [5]
+          }}
+        >
           <Atom.Flex center column>
             <Atom.Heading as="h1" mega>
               Ethers React

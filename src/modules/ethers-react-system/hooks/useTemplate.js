@@ -4,10 +4,11 @@
  */
 
 /* --- Global --- */
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect } from "react";
+import { withEthers } from "@ethers-react/system";
 /* --- Effect --- */
-export const useWalletSignMessage = props => {
+export const useTemplate = props => {
+  const ethers = withEthers();
   const [, set] = useState();
 
   /* --- Error : State --- */
@@ -19,16 +20,12 @@ export const useWalletSignMessage = props => {
   /* --- Sign Message :: Effect --- */
   useEffect(() => {
     if (true) {
-      const runEffect = async () => {
+      (async () => {
         try {
-          setMessageSigned(messageSigned);
-        } catch (error) {
-          setError(error);
-        }
-      };
-      runEffect();
+        } catch (error) {}
+      })();
     }
-  }, [messageUnsigned, wallet]);
+  }, [messageUnsignedwallet]);
 
   /* --- Return : Complete --- */
   return {

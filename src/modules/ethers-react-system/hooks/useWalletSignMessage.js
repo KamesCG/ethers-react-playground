@@ -4,7 +4,7 @@
  */
 
 /* --- Global --- */
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /* --- Effect --- */
 export const useWalletSignMessage = props => {
@@ -21,24 +21,31 @@ export const useWalletSignMessage = props => {
     setWallet(wallet);
   };
 
+  /* --- Reset --- */
+  const reset = (wallet, msg) => {
+    setMessageUnsigned(undefined);
+    setMessageSigned(undefined);
+    setWallet(undefined);
+  };
+
   /* --- Sign Message :: Effect --- */
   useEffect(() => {
     if (messageUnsigned && !messageSigned && wallet) {
-      const runEffect = async () => {
+      (async () => {
         try {
           const messageSigned = await wallet.signMessage(messageUnsigned);
           setMessageSigned(messageSigned);
         } catch (error) {
           setMessageSignedError(error);
         }
-      };
-      runEffect();
+      })();
     }
   }, [messageUnsigned, wallet]);
 
   /* --- Return : Complete --- */
   return {
-    signMessage,
+    init,
+    reset,
     messageSigned,
     messageUnsigned,
     error: messageSignedError

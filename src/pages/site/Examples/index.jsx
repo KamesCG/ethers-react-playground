@@ -2,10 +2,27 @@
 import { Router } from "@reach/router";
 
 /* --- Local --- */
-
+import {
+  Balance,
+  BlockCurrent,
+  SignedMessageLocal,
+  SignedMessageTypedLocal,
+  SignedMessageTypedLocalV3,
+  ContractList,
+  ContractSelectByAddress,
+  ContractSelectByName
+} from "@ethers-react/ui";
 /* --- Module --- */
-import { EthersHookTransactionExample } from "./common";
-import { ERC20Demo, TransactionDemo } from "./erc20";
+import { EthersHookTransactionExample } from "./sections/common";
+import { ERC20SectionDemo, TransferDemo } from "./sections/token-erc20";
+
+/* --- Views --- */
+import Introduction from "./Introduction";
+// Core
+import Contracts from "./core/Contracts";
+import MessageSigning from "./core/MessageSigning";
+// Extensions
+import ERC20 from "./extensions/ERC20";
 
 /* --- Component : Main --- */
 const HomePage = props => {
@@ -34,98 +51,7 @@ const Showcase = props => {
 const Main = props => {
   return (
     <Atom.Flex sx={{ height: "100%", flex: 1 }}>
-      <Atom.Box
-        sx={{
-          bg: "neutral",
-          flex: 2,
-          p: 3
-        }}
-      >
-        <Molecule.Menu
-          direction="column"
-          label="Hooks"
-          sx={{
-            m: 1,
-            mx: 1,
-            fontSize: 1
-          }}
-          items={[
-            {
-              label: "Common",
-              to: "/examples/common"
-            },
-            {
-              label: "Contract",
-              to: "/examples/contracts"
-            },
-            {
-              label: "Wallet",
-              to: "/examples/wallet"
-            }
-          ]}
-        />
-        <Molecule.Menu
-          direction="column"
-          label="Extensions"
-          sx={{
-            m: 1,
-            mx: 1,
-            fontSize: 1
-          }}
-          items={[
-            {
-              label: "ERC20",
-              to: "/examples/extension/erc20"
-            }
-          ]}
-        />
-        <Molecule.Menu
-          direction="column"
-          label="Globalize"
-          sx={{
-            m: 1,
-            mx: 1,
-            fontSize: 1
-          }}
-          items={[
-            {
-              label: "Transaction",
-              to: "/examples/requests/transaction"
-            },
-            {
-              label: "Signed Messages",
-              to: "/examples/requests/contract"
-            },
-            {
-              label: "Contract Interaction",
-              to: "/examples/requests/contract"
-            }
-          ]}
-        />
-        <Molecule.Menu
-          direction="column"
-          label="State Management"
-          sx={{
-            m: 1,
-            mx: 1,
-            fontSize: 1
-          }}
-          items={[
-            {
-              label: "Component State",
-              to: "/examples/component-state"
-            },
-            {
-              label: "Application State",
-              to: "/examples/application-state"
-            },
-            {
-              label: "Subspace Caching",
-              to: "/examples/application-caching"
-            }
-          ]}
-        />
-      </Atom.Box>
+      <MenuColletion />
       <Atom.Box
         sx={{
           flex: 10,
@@ -133,10 +59,12 @@ const Main = props => {
         }}
       >
         <Router primary={false} style={{ width: "100%" }}>
+          <Introduction path="/" />
           <ExampleCommon path="/common" />
-          <ExampleContracts path="/contracts" />
+          <Contracts path="/contracts" />
+          <MessageSigning path="/signatures" />
           <ExampleWallet path="/wallet" />
-          <ExampleERC20 path="/extension/erc20" />
+          <ERC20 path="/extension/erc20" />
         </Router>
       </Atom.Box>
     </Atom.Flex>
@@ -160,36 +88,125 @@ const ExampleCommon = props => {
   );
 };
 
-const ExampleContracts = props => {
-  return (
-    <Atom.Box>
-      <Atom.Heading as="h3" xxl>
-        Contracts
-      </Atom.Heading>
-      {/* <TokenDeployExample /> */}
-      {/* <Featured /> */}
-    </Atom.Box>
-  );
-};
-
-const ExampleERC20 = props => {
-  return (
-    <Atom.Box>
-      <Atom.Heading as="h3" xxl>
-        ERC20
-      </Atom.Heading>
-      <TransactionDemo />
-      <ERC20Demo />
-    </Atom.Box>
-  );
-};
-
 const ExampleWallet = props => {
   return (
     <Atom.Box>
       <Atom.Heading as="h3" xxl>
         Wallet
       </Atom.Heading>
+    </Atom.Box>
+  );
+};
+
+const MenuColletion = props => {
+  return (
+    <Atom.Box
+      sx={{
+        bg: "neutral",
+        flex: 2,
+        p: 3
+      }}
+    >
+      <Molecule.Menu
+        direction="column"
+        label="Hooks"
+        sx={{
+          m: 1,
+          mx: 1,
+          fontSize: 1
+        }}
+        items={[
+          {
+            label: "Common",
+            to: "/examples/common"
+          },
+          {
+            label: "Contract",
+            to: "/examples/contracts"
+          },
+          {
+            label: "Wallet",
+            to: "/examples/wallet"
+          },
+          {
+            label: "Signatures",
+            to: "/examples/signatures"
+          }
+        ]}
+      />
+      <Molecule.Menu
+        direction="column"
+        label="Extensions"
+        sx={{
+          m: 1,
+          mx: 1,
+          fontSize: 1
+        }}
+        items={[
+          {
+            label: "Global",
+            to: "/examples/extension/global"
+          },
+          {
+            label: "Reactive",
+            to: "/examples/extension/reactive"
+          },
+          {
+            label: "ERC20",
+            to: "/examples/extension/erc20"
+          },
+          {
+            label: "ERC721",
+            to: "/examples/extension/erc721"
+          }
+        ]}
+      />
+      {/* <Molecule.Menu
+        direction="column"
+        label="Globalize"
+        sx={{
+          m: 1,
+          mx: 1,
+          fontSize: 1
+        }}
+        items={[
+          {
+            label: "Transaction",
+            to: "/examples/requests/transaction"
+          },
+          {
+            label: "Signed Messages",
+            to: "/examples/requests/contract"
+          },
+          {
+            label: "Contract Interaction",
+            to: "/examples/requests/contract"
+          }
+        ]}
+      /> */}
+      {/* <Molecule.Menu
+        direction="column"
+        label="State Management"
+        sx={{
+          m: 1,
+          mx: 1,
+          fontSize: 1
+        }}
+        items={[
+          {
+            label: "Component State",
+            to: "/examples/component-state"
+          },
+          {
+            label: "Application State",
+            to: "/examples/application-state"
+          },
+          {
+            label: "Subspace Caching",
+            to: "/examples/application-caching"
+          }
+        ]}
+      /> */}
     </Atom.Box>
   );
 };

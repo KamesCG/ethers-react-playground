@@ -7,11 +7,11 @@ const DashboardTemplate = ({ sx, sxMain, styled, children, ...props }) => {
       <Atom.Flex sx={{ flex: 1 }}>
         <RegionAside sx={styles.aside} />
         <Atom.Flex column sx={styles.main}>
-          <RegionTopDashboard />
-          <Atom.Flex column sx={{ flex: 1, ...sxMain }}>
+          {/* <RegionTopDashboard /> */}
+          <Atom.Flex column sx={{ flex: 1, height: "100%", ...sxMain }}>
             {children}
           </Atom.Flex>
-          <RegionFooter />
+          {/* <RegionFooter /> */}
         </Atom.Flex>
       </Atom.Flex>
     </Atom.Flex>

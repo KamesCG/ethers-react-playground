@@ -15,11 +15,11 @@ export const TransactionLocal = props => {
       value: ethersProvider.instance.utils.parseEther(values.amount),
       data: values.data
     };
-    transactionRequest.dispatchTransaction(ethersProvider.wallet, tx);
+    transactionRequest.init(ethersProvider.wallet, tx);
   };
 
   useEffect(() => {
-    // console.log(transactionRequest);
+    console.log(transactionRequest);
   }, [transactionRequest]);
 
   return (

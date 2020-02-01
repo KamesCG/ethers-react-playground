@@ -1,5 +1,5 @@
-import React from 'react';
-import Box from './Box';
+import React from "react";
+import Box from "./Box";
 
 export const Heading = React.forwardRef((props, ref) => (
   <Box
@@ -11,8 +11,8 @@ export const Heading = React.forwardRef((props, ref) => (
     __effectKey="text"
     __variantsKey="effects.text"
     __css={{
-      fontFamily: 'heading',
-      lineHeight: 'heading',
+      fontFamily: "heading",
+      lineHeight: "heading"
     }}
   />
 ));

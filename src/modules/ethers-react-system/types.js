@@ -1,5 +1,6 @@
 // * Set Actions
 export const SET_PROVIDER = "SET_PROVIDER";
+export const SET_PROVIDER_MULTIPLE = "SET_PROVIDER_MULTIPLE";
 export const SET_PROVIDER_STATUS = "SET_PROVIDER_STATUS";
 
 export const ENABLE_REQUEST = "ENABLE_REQUEST";

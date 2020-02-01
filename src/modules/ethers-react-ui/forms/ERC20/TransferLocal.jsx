@@ -43,7 +43,7 @@ export const TransferLocal = ({ contractAddress, ...props }) => {
       <Molecule.Field
         name="amount"
         placeholder="Amount"
-        defaultValue="1"
+        defaultValue="100000000000000000"
         register={register}
         errors={errors}
         sx={styles.field}

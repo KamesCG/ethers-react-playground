@@ -35,6 +35,10 @@ body {
   z-index: 50;
 }
 
+em {
+  font-style: italic;
+}
+
 strong {
   font-weight: 500;
 }
@@ -56,12 +60,14 @@ code {
 }
 
 a {
-  color: inherit;
+  /* color: inherit; */
+  color: #2c2cd2;
   text-decoration: none;
   margin: 0;
 }
 
 a:hover {
+  color: darkblue;
   text-decoration: none;
   cursor: pointer;
 }
