@@ -10,27 +10,29 @@
 import React, { useContext, useReducer } from "react";
 
 /* --- Local --- */
-import Context from "../Context";
+import Context, { makeContext } from "../Context";
 import reducers from "../reducer";
 import {
   combineReducers,
+  reduceReducers,
   enhanceActions,
   contractLoad,
-  extensionsInitialize
+  extensionsInitialize,
+  getExtensions
 } from "../middleware";
 
 /* --- Component --- */
 const Provider = ({ children, contracts = [], extensions }) => {
   // console.log(extensions, "extensions");
   /* --- Ethers Context --- */
-  const initialState = useContext(Context);
+  const {extensionsInitialState, extensionsReducers} = getExtensions(extensions);
+  const ctx = makeContext(extensionsInitialState)
+  const initialState = useContext(ctx);
 
+  const rootReducer = reduceReducers(initialState, reducers, ...Object.values(extensionsReducers))
   /* --- Reducer --- */
   const [state, dispatch] = useReducer(
-    // reducers,
-    combineReducers({
-      core: reducers
-    }),
+    rootReducer,
     initialState,
     contractLoad(contracts)
   );
