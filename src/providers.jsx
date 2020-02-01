@@ -36,13 +36,17 @@ const contracts = [
 const extensions = [
   {
     name: "ethers-react-reactive",
-    hooks: hooksReactive
+    hooks: hooksReactive,
+    reducer: (state, action) => state,
+    initialState: {hello: 'world'}
   },
   {
     name: "ethers-react-global",
     actions: actionsGlobal,
     hooks: hooksGlobal,
-    types: typesGlobal
+    types: typesGlobal,
+    reducer: (state, action) => state,
+    initialState: {}
   }
 ];
 

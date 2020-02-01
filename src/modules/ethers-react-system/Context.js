@@ -68,3 +68,42 @@ const Context = createContext({
 });
 
 export default Context;
+
+export const makeContext = (extensionsInitialState) =>
+  createContext({
+    instance: ethers,
+    address: undefined,
+    balance: undefined,
+    network: undefined,
+    nonce: undefined,
+    providers: undefined,
+    wallet: undefined,
+    contracts: {},
+    activity: {
+      deploy: {},
+      messages: {},
+      signatures: {},
+      transactions: {}
+    },
+    requests: {
+      deploy: [],
+      messages: [],
+      signatures: [],
+      transactions: []
+    },
+    library: {
+      contracts: []
+    },
+    store: {
+      contracts: []
+    },
+    enableRequest: () => { },
+    // contractDeployRequest: () => {},
+    // contractDeployFromBytecodeRequest: () => {},
+    // contractInitializeRequest: () => {},
+    // walletSendTransactionRequest: () => {},
+    // walletSignMessageRequest: () => {},
+    // walletSignMessageTypedRequest: () => {},
+    // walletSignTransactionRequest: () => {}
+    ...extensionsInitialState
+  })
